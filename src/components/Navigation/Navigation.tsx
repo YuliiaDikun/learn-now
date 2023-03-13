@@ -1,11 +1,10 @@
 import React from "react";
-import { HeaderWrapper, StyledLogo, NavList, StyledLink } from "./Navigation.styled";
+import Logo from "components/Logo/Logo";
+import { HeaderWrapper, NavList, StyledLink } from "./Navigation.styled";
 const Navigation: React.FC = () => {
   return (
     <HeaderWrapper>
-      <StyledLogo to="/">
-        <span>Learn</span>now
-      </StyledLogo>
+      <Logo/>
       <nav>
         <NavList>
           <li>

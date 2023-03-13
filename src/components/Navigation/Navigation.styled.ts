@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
+  gap:${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(4)};
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
   max-width: ${({ theme }) => theme.media.desktop};
   margin: 0 auto;
 `;
