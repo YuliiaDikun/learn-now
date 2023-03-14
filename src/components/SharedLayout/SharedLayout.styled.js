@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   main {
     flex-grow: 1;
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.yellow};
   }
 `;
 
