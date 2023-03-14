@@ -20,7 +20,7 @@ const CourseItem = ({ course }) => {
     <StyledItem to={`${id}`} state={{ from: location }}>
       <CourseWrapper>
         <ImgWrapper>
-          <img src={previewImageLink + "/cover.webp"} alt={title} />
+          <img src={`${previewImageLink}/cover.webp`} alt={title} />
         </ImgWrapper>
         <DescWrapper>
           <CourseText>{title}</CourseText>

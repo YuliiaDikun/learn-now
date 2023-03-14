@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { useParams, useLocation, Outlet } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCourseById } from "../../services/genesisAPI";
@@ -9,39 +9,45 @@ import { StyledSkils } from "../../components/CourseItem/CorseItem.styled";
 import { Container } from "../../components/SharedLayout/SharedLayout.styled";
 import {
   StyledSection,
+  StyledCourse,
   GoBackLink,
   ImgWrapper,
   DescrWrapper,
   StyledProductTitle,
   StyledP,
+  VideoItem,
+  LessonTitle,
 } from "./Course.styled";
 import { ImBlocked } from "react-icons/im";
 const Course = () => {
-  const [course, setCourse] = useState({});
+  const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? "/";
 
   const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     const getResults = async () => {
       try {
         const res = await getCourseById(id);
+        console.log(res);
         setCourse(res);
       } catch (error) {
         toast.error(error.message);
       } finally {
-       setIsLoading(false);
+        setIsLoading(false);
       }
     };
     getResults();
-  }, [id]);
+  }, []);
+
   if (!course) return null;
-console.log(course)
+  console.log(course);
   return (
-    <main>
+    <StyledSection>
       <Container>
         <GoBackLink to={backLinkHref}>
           <MdOutlineArrowBackIosNew size={20} /> Back to courses
@@ -49,10 +55,10 @@ console.log(course)
         {isLoading ? (
           <Loader />
         ) : (
-          <StyledSection>
+          <StyledCourse>
             <ImgWrapper>
               <img
-                src={course.previewImageLink + "/cover.webp"}
+                src={`${course.previewImageLink}/cover.webp`}
                 alt={course.title}
               />
             </ImgWrapper>
@@ -60,6 +66,7 @@ console.log(course)
               <StyledProductTitle>{course.title}</StyledProductTitle>
               {course.meta.skills ? (
                 <div>
+                  <StyledP>{course.description}</StyledP>
                   <StyledSkils>Course skills:</StyledSkils>
                   <ul>
                     {course.meta?.skills?.map((skill, i) => {
@@ -74,21 +81,33 @@ console.log(course)
               ) : (
                 <StyledSkils>Please help us to attract new skills!</StyledSkils>
               )}
-              <h3>Course Lessons</h3>
-              <ul>
-                {course.lessons.map((lesson) => (
-                  <p key={lesson.id}>
-                    <a href={lesson.link}>{lesson.title}</a>
-                    {lesson.status === "locked" && <ImBlocked size={20} />}
-                  </p>
-                ))}
-              </ul>
             </DescrWrapper>
-          </StyledSection>
+          </StyledCourse>
         )}
-        <Outlet/>
+        <h3>Course Lessons: </h3>
+        <ul>
+          {course.lessons?.map((lesson) => (
+            <VideoItem key={lesson.id}>
+              <LessonTitle>
+                {lesson.title}
+                {lesson.status === "locked" && <ImBlocked color="red" size={15} />}
+              </LessonTitle>
+              <video
+                controls
+                width="320"
+                src={lesson.link}
+                loop
+                autoPlay
+                preload="auto"
+                type="application/x-mpegURL"
+                poster={`${lesson.previewImageLink}/lesson-${lesson.order}.webp`}
+              ></video>
+              
+            </VideoItem>
+          ))}
+        </ul>
       </Container>
-    </main>
+    </StyledSection>
   );
 };
 
