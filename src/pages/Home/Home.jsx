@@ -7,8 +7,8 @@ const Home = () => {
 
   useEffect(()=>{     
     const getResults = async () => {
-      const data = await getCourses();  
-      console.log(data)
+      const { courses} = await getCourses();  
+     setCourses(courses)
     };
     getResults();
   },[])
