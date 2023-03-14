@@ -1,8 +1,8 @@
 import React from 'react'
-import SocialMedia from 'components/SocialMedia/SocialMedia';
-import Logo from 'components/Logo/Logo';
+import SocialMedia from '../SocialMedia/SocialMedia';
+import Logo from '../Logo/Logo';
 import { StyledFooter, StyledP } from './Footer.styled';
-const Footer:React.FC = () => {
+const Footer = () => {
   return (
     <StyledFooter>
       <Logo/>

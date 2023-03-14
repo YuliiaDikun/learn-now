@@ -1,12 +1,16 @@
 import React, { useState, useEffect} from "react";
-import { Container } from "components/SharedLayout/SharedLayout.styled";
-import { getCourses } from "services/genesisAPI";
-const Home: React.FC = () => {
+import { Container } from "../../components/SharedLayout/SharedLayout.styled";
+import { getCourses } from "../../services/genesisAPI";
+const Home = () => {
   const [courses, setCourses] = useState([]);
   const [page, setPage] = useState(1);
 
-  useEffect(()=>{ 
-    getCourses();
+  useEffect(()=>{     
+    const getResults = async () => {
+      const data = await getCourses();  
+      console.log(data)
+    };
+    getResults();
   },[])
   return (
     <section>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from "styled-components";
-import { theme } from 'styles/theme';
-import { GlobalStyleComponent } from 'styles/GlobalStyles';
+import { theme } from './styles/theme'
+import { GlobalStyleComponent } from './styles/GlobalStyles';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy } from "react";
@@ -10,7 +10,6 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 
 const MainPage = lazy(() => import("./pages/Home/Home"));
 const CoursePage = lazy(() => import("./pages/Course/Course"));
-
 
 function App() {
   return (

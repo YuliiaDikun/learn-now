@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { MyProps } from "./theme";
-export const GlobalStyleComponent = createGlobalStyle<MyProps>`
+
+export const GlobalStyleComponent = createGlobalStyle`
 body {
   height: 100vh;
   color:${({ theme }) => theme.colors.dark};
