@@ -26,7 +26,7 @@ const CourseItem = ({ course }) => {
           <CourseText>{title}</CourseText>
           <RatingWrapper>
             <p>
-              Lessons:
+              Available Lessons:
               <span>{lessonsCount}</span>
               <MdOutlinePlayLesson size={20} />
             </p>

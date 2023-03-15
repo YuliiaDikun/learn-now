@@ -22,6 +22,7 @@ import {
   VideoWrapper,
 } from "./Course.styled";
 import { ImBlocked } from "react-icons/im";
+
 const Course = () => {
   const [course, setCourse] = useState(null);
   const [openLesson, setOpenLesson] = useState("");
@@ -36,6 +37,10 @@ const Course = () => {
     const getResults = async () => {
       try {
         const res = await getCourseById(id);
+        const firstLesson = res.lessons[0];
+        if (firstLesson.status === "unlocked") { 
+          setOpenLesson(firstLesson.id);
+        }
         setCourse(res);
       } catch (error) {
         toast.error(error.message);
@@ -46,21 +51,22 @@ const Course = () => {
     getResults();
   }, [id]);
 
-  if (!course) return null;
-
-  const toggleLessonVideo = (id) => {
+  const toggleLessonVideo = (lessonId) => {
     setOpenLesson((prevId) => {
-      if (prevId === id) {
+      if (prevId === lessonId) {
         return "";
-      } 
-      if (id === "locked") {
-        toast.error('Current video is locked');
-        return '';
-      } else { 
-        return id;
+      }
+      if (lessonId === "locked") {
+        toast.error("Current video is locked");
+        return "";
+      } else {
+        return lessonId;
       }
     });
   };
+
+  if (!course) return null;
+
   return (
     <StyledSection>
       <Container>
@@ -104,34 +110,35 @@ const Course = () => {
           {course.lessons?.map((lesson, i) => {
             const { id, title, status, link, previewImageLink, order } = lesson;
             const isLocked = status === "locked";
-            const isVideoAvailable = isLocked ? 'locked' : id;
+            const isVideoAvailable = isLocked ? "locked" : id;
+
             return (
               <VideoItem key={id}>
-                <LessonTextWrapper onClick={() => toggleLessonVideo(isVideoAvailable)}>
+                <LessonTextWrapper
+                  onClick={() => toggleLessonVideo(isVideoAvailable)}
+                >
                   <LessonTitle>
                     {i + 1}. {title}
-                    {isLocked && (
-                      <ImBlocked color="red" size={15} />
-                    )}
+                    {isLocked && <ImBlocked color="red" size={15} />}
                   </LessonTitle>
-                  <StyledOpenSpan clicked={openLesson === id}>
-                    +
-                  </StyledOpenSpan>
+                  <StyledOpenSpan clicked={openLesson === id}>+</StyledOpenSpan>
                 </LessonTextWrapper>
                 <VideoWrapper open={openLesson === id}>
                   <video
+                    className="video-js"
                     controls
-                    width="320"
                     src={link}
-                    loop
-                    autoPlay
-                    preload="auto"
                     type="application/x-mpegURL"
+                    id={`my-video-${i}`}
+                    width="640"
+                    height="264"
+                    autoPlay={false}
+                    data-setup="{}"
                     poster={`${previewImageLink}/lesson-${order}.webp`}
                   ></video>
                 </VideoWrapper>
               </VideoItem>
-            )
+            );
           })}
         </ul>
       </Container>

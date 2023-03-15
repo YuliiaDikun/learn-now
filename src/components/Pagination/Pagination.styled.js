@@ -14,7 +14,6 @@ export const PaginationItem = styled.li`
   height: ${({ theme }) => theme.spacing(8)};
   text-align: center;
   margin: auto ${({ theme }) => theme.spacing(1)};
-
   display: flex;
   justify-content: center;
   align-items: center;

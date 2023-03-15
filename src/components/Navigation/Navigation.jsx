@@ -9,10 +9,7 @@ const Navigation = () => {
         <NavList>
           <li>
             <StyledLink to='/'>Home</StyledLink>
-          </li>
-          <li>
-            <StyledLink to="/course/:id">Course</StyledLink>
-          </li>
+          </li>          
         </NavList>
       </nav>
     </HeaderWrapper>
