@@ -26,14 +26,12 @@ const Course = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? "/";
 
-  const { id } = useParams();
-  console.log(id);
+  const { id } = useParams(); 
 
   useEffect(() => {
     const getResults = async () => {
       try {
-        const res = await getCourseById(id);
-        console.log(res);
+        const res = await getCourseById(id);        
         setCourse(res);
       } catch (error) {
         toast.error(error.message);
@@ -42,10 +40,10 @@ const Course = () => {
       }
     };
     getResults();
-  }, []);
+  }, [id]);
 
   if (!course) return null;
-  console.log(course);
+ 
   return (
     <StyledSection>
       <Container>
@@ -86,12 +84,14 @@ const Course = () => {
         )}
         <h3>Course Lessons: </h3>
         <ul>
-          {course.lessons?.map((lesson) => (
+          {course.lessons?.map((lesson, i) => (
             <VideoItem key={lesson.id}>
-              <LessonTitle>
-                {lesson.title}
+              <label htmlFor="">
+                <LessonTitle>
+                {i+1}. {lesson.title}
                 {lesson.status === "locked" && <ImBlocked color="red" size={15} />}
               </LessonTitle>
+              </label>
               <video
                 controls
                 width="320"
@@ -101,8 +101,7 @@ const Course = () => {
                 preload="auto"
                 type="application/x-mpegURL"
                 poster={`${lesson.previewImageLink}/lesson-${lesson.order}.webp`}
-              ></video>
-              
+              ></video>              
             </VideoItem>
           ))}
         </ul>

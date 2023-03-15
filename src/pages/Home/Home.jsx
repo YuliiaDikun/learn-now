@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Container } from "../../components/SharedLayout/SharedLayout.styled";
 import { getCourses } from "../../services/genesisAPI";
 import Logo from "../../components/Logo/Logo";
@@ -7,6 +7,8 @@ import { StyledSection, MainTitle, StyledList } from "./Home.styled";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../components/Loader/Loader";
+import Pagination from "../../components/Pagination/Pagination";
+let pageSize = 10;
 const Home = () => {
   const [courses, setCourses] = useState([]);
   const [page, setPage] = useState(1);
@@ -19,24 +21,38 @@ const Home = () => {
         setCourses(res.courses);
       } catch (error) {
         toast.error(error.message);
-      } finally { 
+      } finally {
         setIsLoading(false);
       }
     };
     getResults();
   }, []);
+
+  const currentCourseData = useMemo(() => {
+    const firstPageIndex = (page - 1) * pageSize;
+    const lastPageIndex = firstPageIndex + pageSize;
+    return courses.slice(firstPageIndex, lastPageIndex);
+  }, [page, courses]);
+
   return (
     <StyledSection>
       <Container>
-        { isLoading && <Loader/>}
+        {isLoading && <Loader />}
         <MainTitle>
           <Logo /> - Learning has never been more convenient!
         </MainTitle>
         <StyledList>
-          {courses.map((course) => {
+          {currentCourseData.map((course) => {
             return <CourseItem key={course.id} course={course} />;
           })}
         </StyledList>
+        <Pagination
+       
+        currentPage={page}
+        totalCount={courses.length}
+        pageSize={pageSize}
+        onPageChange={page => setPage(page)}
+      />
       </Container>
     </StyledSection>
   );
