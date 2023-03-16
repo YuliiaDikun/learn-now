@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import { VideoWrapper } from "./VideoJS.styled";
 
 export const VideoJS = ({ options, onReady }) => {  
  const videoRef = useRef(null);
@@ -26,7 +27,7 @@ export const VideoJS = ({ options, onReady }) => {
       player.autoplay(options.autoplay);
       player.src(options.sources);
     }
-  }, [options,onReady]);
+  }, [options, onReady]);
 
   
   useEffect(() => {
@@ -41,9 +42,9 @@ export const VideoJS = ({ options, onReady }) => {
   }, [playerRef]); 
 
   return (
-    <div data-vjs-player>
+    <VideoWrapper data-vjs-player>
       <div ref={videoRef} />
-    </div>
+    </VideoWrapper>
   );
 };
 
