@@ -41,8 +41,7 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
       boxShadow: "0px 1px 8px rgba(204, 131, 36, 0.5)",
     };
     let progressVideo = (lessonTime / duration) * 100;
-
-    console.log(progressVideo);
+    
     updatedProgressBarStyles.width = `${progressVideo}%`;
     setProgressBarStyles(updatedProgressBarStyles);
   }, [duration, lessonTime]);

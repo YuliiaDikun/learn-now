@@ -36,7 +36,8 @@ export const ImgWrapper = styled.div`
     display: block;
     width: 100%;
     min-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    transform: scale(1) rotate(0deg);
     transition: all 0.4s;
   }
 `;

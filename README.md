@@ -1,46 +1,11 @@
-# Getting Started with Create React App
+# LEARNnow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Learn Now is an educational platform that allows you to choose from a variety of courses and watch video lessons. Additionally, Learn Now provides a user-friendly interface that makes it easy to navigate through the courses and lessons. The platform also tracks your progress through each lesson, so you always know where you left off.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+Whether you are a student looking to expand your knowledge or a professional seeking to improve your skills, Learn Now offers a wide range of courses that cater to different interests and goals. With its convenient features and comprehensive learning resources, Learn Now is an ideal platform for anyone who wants to learn at their own pace and on their own schedule.
 
-### `npm start`
+## NOTICE
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Please note that in order to access Learn Now, it may be necessary to install CORS plugins for your browser. These plugins will enable your browser to make requests to the Learn Now servers and retrieve the necessary data to display the platform's content. Without these plugins, you may experience difficulties accessing the platform or viewing certain features. We recommend checking with your browser's documentation or support forums for more information on installing CORS plugins.

@@ -17,7 +17,8 @@ const Home = () => {
   useEffect(() => {
     const getResults = async () => {
       try {
-        const res = await getCourses();
+        const res = await getCourses();        
+        res.courses.sort((a, b) => Date.parse(a) - Date.parse(b));        
         setCourses(res.courses);
       } catch (error) {
         toast.error(error.message);
