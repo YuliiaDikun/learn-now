@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const VideoWrapper = styled.div`
   width: 320px;
   height: auto;
-  padding-bottom: 40px;
+  padding-bottom: ${({ theme }) => theme.spacing(5)};
 
   .vjs-poster img {
     object-fit: cover;
