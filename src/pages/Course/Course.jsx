@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getCourseById } from "../../services/genesisAPI";
+import Lesson from "../../components/Lesson/Lesson";
 import Loader from "../../components/Loader/Loader";
 import { StyledSkils } from "../../components/CourseItem/CorseItem.styled";
 import { Container } from "../../components/SharedLayout/SharedLayout.styled";
@@ -15,13 +16,7 @@ import {
   DescrWrapper,
   StyledProductTitle,
   StyledP,
-  VideoItem,
-  LessonTextWrapper,
-  LessonTitle,
-  StyledOpenSpan,
-  VideoWrapper,
 } from "./Course.styled";
-import { ImBlocked } from "react-icons/im";
 
 const Course = () => {
   const [course, setCourse] = useState(null);
@@ -38,7 +33,7 @@ const Course = () => {
       try {
         const res = await getCourseById(id);
         const firstLesson = res.lessons[0];
-        if (firstLesson.status === "unlocked") { 
+        if (firstLesson.status === "unlocked") {
           setOpenLesson(firstLesson.id);
         }
         setCourse(res);
@@ -108,37 +103,13 @@ const Course = () => {
         <h3>Course Lessons: </h3>
         <ul>
           {course.lessons?.map((lesson, i) => {
-            const { id, title, status, link, previewImageLink, order } = lesson;
-            const isLocked = status === "locked";
-            const isVideoAvailable = isLocked ? "locked" : id;
-
-            return (
-              <VideoItem key={id}>
-                <LessonTextWrapper
-                  onClick={() => toggleLessonVideo(isVideoAvailable)}
-                >
-                  <LessonTitle>
-                    {i + 1}. {title}
-                    {isLocked && <ImBlocked color="red" size={15} />}
-                  </LessonTitle>
-                  <StyledOpenSpan clicked={openLesson === id}>+</StyledOpenSpan>
-                </LessonTextWrapper>
-                <VideoWrapper open={openLesson === id}>
-                  <video
-                    className="video-js"
-                    controls
-                    src={link}
-                    type="application/x-mpegURL"
-                    id={`my-video-${i}`}
-                    width="640"
-                    height="264"
-                    autoPlay={false}
-                    data-setup="{}"
-                    poster={`${previewImageLink}/lesson-${order}.webp`}
-                  ></video>
-                </VideoWrapper>
-              </VideoItem>
-            );
+           return <Lesson
+              key={lesson.id}
+              lesson={lesson}
+              i={i}
+              openLesson={openLesson}
+              toggleLessonVideo={toggleLessonVideo }
+            />;
           })}
         </ul>
       </Container>
