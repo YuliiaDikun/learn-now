@@ -36,6 +36,7 @@ export const StyledOpenSpan = styled.span`
 `;
 
 export const VideoWrapper = styled.div`
+  margin: 0 auto;
   opacity: ${(props) => (props.open ? "1" : "0")};
   height: ${(props) => (props.open ? "auto" : "0px")};
   transition: opacity 0.3s;
