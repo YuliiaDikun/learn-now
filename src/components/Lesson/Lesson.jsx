@@ -44,7 +44,8 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
-    
+    console.log(lessonTime);
+    player.currentTime(lessonTime);
     function getTime () {       
       localStorage.setItem(
         "lessons",
@@ -54,9 +55,7 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
         })
       );
   
-    }  
-    console.log(lessonTime);
-    player.currentTime(lessonTime);    
+    }         
 
     player.on("timeupdate", throttle(getTime, 1000));
 

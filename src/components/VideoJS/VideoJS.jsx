@@ -3,7 +3,7 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import { VideoWrapper } from "./VideoJS.styled";
 
-export const VideoJS = ({ options, onReady }) => {  
+export const VideoJS = ({ options, onReady, preview }) => {  
  const videoRef = useRef(null);
   const playerRef = useRef(null); 
 
@@ -41,7 +41,7 @@ export const VideoJS = ({ options, onReady }) => {
   }, [playerRef]); 
 
   return (
-    <VideoWrapper data-vjs-player>
+    <VideoWrapper preview data-vjs-player>
       <div ref={videoRef} />
     </VideoWrapper>
   );

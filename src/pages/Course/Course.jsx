@@ -65,12 +65,10 @@ const Course = () => {
   return (
     <StyledSection>
       <Container>
+        { isLoading && <Loader/>}
         <GoBackLink to={backLinkHref}>
           <MdOutlineArrowBackIosNew size={20} /> Back to courses
-        </GoBackLink>
-        {isLoading ? (
-          <Loader />
-        ) : (
+        </GoBackLink>       
           <StyledCourse>
             <ImgWrapper>
               <img
@@ -98,8 +96,7 @@ const Course = () => {
                 <StyledSkils>Please help us to attract new skills!</StyledSkils>
               )}
             </DescrWrapper>
-          </StyledCourse>
-        )}
+          </StyledCourse>        
         <h3>Course Lessons: </h3>
         <ul>
           {course.lessons?.map((lesson, i) => {

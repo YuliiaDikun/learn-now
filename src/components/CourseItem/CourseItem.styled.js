@@ -21,6 +21,9 @@ export const CourseWrapper = styled.div`
   transition: box-shadow 0.3s, transform 0.3s;
   &:hover {
     box-shadow: ${({ theme }) => theme.shadows.small};
+    img {
+      transform: scale(1.1) rotate(0.01deg);
+    }
   }
 `;
 export const ImgWrapper = styled.div`
@@ -29,11 +32,13 @@ export const ImgWrapper = styled.div`
   border-top-left-radius: ${({ theme }) => theme.spacing(2)};
   border-top-right-radius: ${({ theme }) => theme.spacing(2)};
   height: 250px;
-  video {
+  img {
     display: block;
     width: 100%;
     min-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    transform: scale(1) rotate(0deg);
+    transition: all 0.4s;
   }
 `;
 export const DescWrapper = styled.div`

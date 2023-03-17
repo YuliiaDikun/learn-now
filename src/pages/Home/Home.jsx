@@ -3,11 +3,12 @@ import { Container } from "../../components/SharedLayout/SharedLayout.styled";
 import { getCourses } from "../../services/genesisAPI";
 import Logo from "../../components/Logo/Logo";
 import CourseItem from "../../components/CourseItem/CourseItem";
+import Loader from "../../components/Loader/Loader";
+import Pagination from "../../components/Pagination/Pagination";
 import { StyledSection, MainTitle, StyledList } from "./Home.styled";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loader from "../../components/Loader/Loader";
-import Pagination from "../../components/Pagination/Pagination";
+
 let pageSize = 10;
 const Home = () => {
   const [courses, setCourses] = useState([]);
