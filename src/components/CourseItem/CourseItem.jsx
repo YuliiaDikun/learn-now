@@ -31,7 +31,7 @@ const CourseItem = ({ course }) => {
               <MdOutlinePlayLesson size={20} />
             </p>
             <p>
-              Rating: <span>{rating} </span> <FcRating size={20} />
+              Rating: <span>{rating.toFixed(1)} </span> <FcRating size={20} />
             </p>
           </RatingWrapper>
           {meta.skills ? (

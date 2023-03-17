@@ -19,18 +19,13 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
   const [progressBarStyles, setProgressBarStyles] = useState({
     width: "0%",
     backgroundColor: "transparent",
-  });
-
+  }); 
+ 
   const lessonsFromLocalStorage =
-    JSON.parse(localStorage.getItem("lessons")) ?? {};
+    JSON.parse(localStorage.getItem("lessons")) ?? {};  
 
-  const isLessonInStorage = Object.keys(lessonsFromLocalStorage).some(
-    (lesson) => lesson === openLesson);
-
-  const lessonTime = isLessonInStorage
-    ? lessonsFromLocalStorage[openLesson]
-    : 0;
-
+  const lessonTime = lessonsFromLocalStorage[openLesson] || 0; 
+  
   const isLocked = status === "locked";
   const isVideoAvailable = isLocked ? "locked" : id;
   const open = openLesson === id;
@@ -44,7 +39,7 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
     
     updatedProgressBarStyles.width = `${progressVideo}%`;
     setProgressBarStyles(updatedProgressBarStyles);
-  }, [duration, lessonTime]);
+  }, [duration, lessonTime, openLesson]);
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -58,7 +53,7 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
 
       localStorage.setItem(
         "lessons",
-        JSON.stringify({
+        JSON.stringify({   
           ...lessonsFromLocalStorage,
           [`${openLesson}`]: time,
         })
