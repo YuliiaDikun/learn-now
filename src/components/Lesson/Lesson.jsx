@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ImBlocked } from "react-icons/im";
 import VideoJS from "../VideoJS/VideoJS";
+import throttle from "lodash.throttle";
 import {
   VideoItem,
   LessonTitle,
@@ -39,26 +40,25 @@ const Lesson = ({ lesson, i, openLesson, toggleLessonVideo }) => {
     
     updatedProgressBarStyles.width = `${progressVideo}%`;
     setProgressBarStyles(updatedProgressBarStyles);
-  }, [duration, lessonTime, openLesson]);
+  }, [duration, lessonTime]);
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
-
-    player.on("loadedmetadata", function () {
-      player.currentTime(lessonTime);
-    });
-
-    player.on("timeupdate", () => {
-      let time = player.currentTime();
-
+    
+    function getTime () {       
       localStorage.setItem(
         "lessons",
         JSON.stringify({   
           ...lessonsFromLocalStorage,
-          [`${openLesson}`]: time,
+          [`${openLesson}`]: player.cache_.currentTime,
         })
       );
-    });
+  
+    }  
+    console.log(lessonTime);
+    player.currentTime(lessonTime);    
+
+    player.on("timeupdate", throttle(getTime, 1000));
 
     player.on("dispose", () => {
       videojs.log("player will dispose");
