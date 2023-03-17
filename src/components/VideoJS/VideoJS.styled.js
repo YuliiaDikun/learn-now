@@ -9,6 +9,6 @@ export const VideoWrapper = styled.div`
     object-fit: cover;
   }
   @media screen and (min-width: 768px) {
-    max-width: ${(props) => (props.preview ? "auto" : "700px")};
+    width: ${(props) => (props.preview ? "auto" : "700px")};
   }
 `;
