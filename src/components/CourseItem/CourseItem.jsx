@@ -1,7 +1,7 @@
-import React, {useRef } from "react";
+import React, { useRef } from "react";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { FcRating } from "react-icons/fc";
-import VideoJS from '../VideoJS/VideoJS';
+import VideoJS from "../VideoJS/VideoJS";
 import {
   StyledItem,
   CourseWrapper,
@@ -12,29 +12,28 @@ import {
   StyledSkils,
   StyledSkillItem,
   SkillsList,
-} from "./CorseItem.styled";
+} from "./CourseItem.styled";
 import { useLocation } from "react-router-dom";
 const CourseItem = ({ course }) => {
-   const playerRef = useRef(null);
+  const playerRef = useRef(null);
   const location = useLocation();
   const { id, previewImageLink, title, lessonsCount, meta, rating } = course;
-  
-   const handlePlayerReady = (player) => {
-     playerRef.current = player;
-     player.muted(true);
-     function handlePlay() { 
-       player.play();
-     }
-     function handlePause() { 
-       player.pause();
-     }
-    // You can handle player events here, for example:
-    player.on('mouseover', handlePlay);
 
-    player.on('mouseout', handlePause);
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+    player.muted(true);
+    function handlePlay() {
+      player.play();
+    }
+    function handlePause() {
+      player.pause();
+    }
+    // You can handle player events here, for example:
+    player.on("mouseover", handlePlay);
+
+    player.on("mouseout", handlePause);
   };
-  
-  
+
   const videoJsOptions = {
     autoplay: false,
     controls: false,
@@ -43,7 +42,7 @@ const CourseItem = ({ course }) => {
     poster: `${previewImageLink}/cover.webp`,
     sources: [
       {
-        src: meta.courseVideoPreview.link,
+        src: meta.courseVideoPreview?.link,
         type: "application/x-mpegURL",
       },
     ],
@@ -52,7 +51,15 @@ const CourseItem = ({ course }) => {
     <StyledItem to={`${id}`} state={{ from: location }}>
       <CourseWrapper>
         <ImgWrapper>
-          <VideoJS options={videoJsOptions} onReady={handlePlayerReady} preview={true } />         
+          {meta.courseVideoPreview?.link ? (
+            <VideoJS
+              options={videoJsOptions}
+              onReady={handlePlayerReady}
+              preview={true}
+            />
+          ) : (
+            <img src={`${previewImageLink}/cover.webp`} alt={title} />
+          )}
         </ImgWrapper>
         <DescWrapper>
           <CourseText>{title}</CourseText>

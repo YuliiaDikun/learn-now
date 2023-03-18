@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getCourseById } from "../../services/genesisAPI";
 import Lesson from "../../components/Lesson/Lesson";
 import Loader from "../../components/Loader/Loader";
-import { StyledSkils } from "../../components/CourseItem/CorseItem.styled";
+import { StyledSkils } from "../../components/CourseItem/CourseItem.styled";
 import { Container } from "../../components/SharedLayout/SharedLayout.styled";
 import {
   StyledSection,
