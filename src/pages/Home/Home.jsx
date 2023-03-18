@@ -8,12 +8,14 @@ import Pagination from "../../components/Pagination/Pagination";
 import { StyledSection, MainTitle, StyledList } from "./Home.styled";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from "react-router-dom";
 
 let pageSize = 10;
 const Home = () => {
-  const [courses, setCourses] = useState([]);
-  const [page, setPage] = useState(1);
+   const [searchParams, setSearchParams] = useSearchParams();
+  const [courses, setCourses] = useState([]);  
   const [isLoading, setIsLoading] = useState(true);
+  const page = searchParams.get("page") ?? "1";
 
   useEffect(() => {
     const getResults = async () => {
@@ -29,6 +31,11 @@ const Home = () => {
     };
     getResults();
   }, []);
+
+const updateQueryString = (page) => {
+    const nextParams = page !== "" ? { page } : {};
+    setSearchParams(nextParams);
+  };
 
   const currentCourseData = useMemo(() => {
     const firstPageIndex = (page - 1) * pageSize;
@@ -48,12 +55,13 @@ const Home = () => {
             return <CourseItem key={course.id} course={course} />;
           })}
         </StyledList>
-        <Pagination
-       
+        <Pagination       
         currentPage={page}
         totalCount={courses.length}
         pageSize={pageSize}
-        onPageChange={page => setPage(page)}
+          onPageChange={page => { 
+            updateQueryString(page)
+          }}
       />
       </Container>
     </StyledSection>
