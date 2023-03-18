@@ -59,9 +59,7 @@ const updateQueryString = (page) => {
         currentPage={page}
         totalCount={courses.length}
         pageSize={pageSize}
-          onPageChange={page => { 
-            updateQueryString(page)
-          }}
+        onPageChange={page => updateQueryString(page)}
       />
       </Container>
     </StyledSection>

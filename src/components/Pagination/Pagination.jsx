@@ -40,7 +40,7 @@ const Pagination = ({
   return (
     <PaginationContainer>
       {/* Left navigation arrow */}
-      <PaginationItem disabled={currentPage === 1} onClick={onPrevious}>
+      <PaginationItem disabled={Number(currentPage) === 1} onClick={onPrevious}>
         <MdOutlineArrowBackIosNew size={20} />
       </PaginationItem>
       {paginationRange.map((pageNumber, i) => {
