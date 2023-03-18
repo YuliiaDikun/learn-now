@@ -41,7 +41,7 @@ export const VideoJS = ({ options, onReady, preview }) => {
   }, [playerRef]); 
 
   return (
-    <VideoWrapper preview={ false} data-vjs-player>
+    <VideoWrapper preview={preview} data-vjs-player>
       <div ref={videoRef} />
     </VideoWrapper>
   );
