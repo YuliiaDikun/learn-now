@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/learn-now/static/css/main.afccc865.css",
+    "main.js": "/learn-now/static/js/main.65a02312.js",
+    "static/js/762.9990c073.chunk.js": "/learn-now/static/js/762.9990c073.chunk.js",
+    "static/js/610.7514c1c6.chunk.js": "/learn-now/static/js/610.7514c1c6.chunk.js",
+    "static/css/974.498334fb.chunk.css": "/learn-now/static/css/974.498334fb.chunk.css",
+    "static/js/974.70af13ec.chunk.js": "/learn-now/static/js/974.70af13ec.chunk.js",
+    "static/js/728.9104d59f.chunk.js": "/learn-now/static/js/728.9104d59f.chunk.js",
+    "index.html": "/learn-now/index.html",
+    "main.afccc865.css.map": "/learn-now/static/css/main.afccc865.css.map",
+    "main.65a02312.js.map": "/learn-now/static/js/main.65a02312.js.map",
+    "762.9990c073.chunk.js.map": "/learn-now/static/js/762.9990c073.chunk.js.map",
+    "610.7514c1c6.chunk.js.map": "/learn-now/static/js/610.7514c1c6.chunk.js.map",
+    "974.498334fb.chunk.css.map": "/learn-now/static/css/974.498334fb.chunk.css.map",
+    "974.70af13ec.chunk.js.map": "/learn-now/static/js/974.70af13ec.chunk.js.map",
+    "728.9104d59f.chunk.js.map": "/learn-now/static/js/728.9104d59f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afccc865.css",
+    "static/js/main.65a02312.js"
+  ]
+}
