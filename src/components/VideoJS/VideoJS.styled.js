@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const VideoWrapper = styled.div`
-  min-width: 320px;
+  width: ${(props) => (props.preview ? "auto" : "320px")};
   height: auto;
   padding-bottom: ${({ theme }) => theme.spacing(5)};
 

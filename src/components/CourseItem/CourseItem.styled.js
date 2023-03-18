@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledItem = styled(Link)`
+  width: 100%;
   color: ${({ theme }) => theme.colors.dark};
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.spacing(2)};
@@ -34,6 +35,8 @@ export const ImgWrapper = styled.div`
     width: 100%;
     min-height: 100%;
     object-fit: contain;
+  }
+  @media screen and (min-width: 768px) {
   }
 `;
 export const DescWrapper = styled.div`

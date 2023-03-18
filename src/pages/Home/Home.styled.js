@@ -19,6 +19,7 @@ export const MainTitle = styled.h1`
 
 export const StyledList = styled.ul`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: ${({ theme }) => theme.spacing(5)};
   padding-top: ${({ theme }) => theme.spacing(5)};
