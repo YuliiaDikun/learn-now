@@ -40,7 +40,7 @@ const Pagination = ({
   return (
     <PaginationContainer>
       {/* Left navigation arrow */}
-      <PaginationItem disabled={Number(currentPage) === 1} onClick={onPrevious}>
+      <PaginationItem disabled={currentPage === 1} onClick={onPrevious}>
         <MdOutlineArrowBackIosNew size={20} />
       </PaginationItem>
       {paginationRange.map((pageNumber, i) => {
@@ -50,8 +50,9 @@ const Pagination = ({
         }
 
         // Render our Page Pills
-        return ( 
-          <PaginationItem key={i}
+        return (
+          <PaginationItem
+            key={i}
             selected={pageNumber === currentPage}
             onClick={() => onPageChange(pageNumber)}
           >

@@ -12,16 +12,16 @@ import { useSearchParams } from "react-router-dom";
 
 let pageSize = 10;
 const Home = () => {
-   const [searchParams, setSearchParams] = useSearchParams();
-  const [courses, setCourses] = useState([]);  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const page = searchParams.get("page") ?? "1";
 
   useEffect(() => {
     const getResults = async () => {
       try {
-        const res = await getCourses();        
-        res.courses.sort((a, b) => Date.parse(a) - Date.parse(b));        
+        const res = await getCourses();
+        res.courses.sort((a, b) => Date.parse(a) - Date.parse(b));
         setCourses(res.courses);
       } catch (error) {
         toast.error(error.message);
@@ -32,7 +32,7 @@ const Home = () => {
     getResults();
   }, []);
 
-const updateQueryString = (page) => {
+  const updateQueryString = (page) => {
     const nextParams = page !== "" ? { page } : {};
     setSearchParams(nextParams);
   };
@@ -55,12 +55,12 @@ const updateQueryString = (page) => {
             return <CourseItem key={course.id} course={course} />;
           })}
         </StyledList>
-        <Pagination       
-        currentPage={page}
-        totalCount={courses.length}
-        pageSize={pageSize}
-        onPageChange={page => updateQueryString(page)}
-      />
+        <Pagination
+          currentPage={Number(page)}
+          totalCount={courses.length}
+          pageSize={pageSize}
+          onPageChange={(page) => updateQueryString(page)}
+        />
       </Container>
     </StyledSection>
   );
