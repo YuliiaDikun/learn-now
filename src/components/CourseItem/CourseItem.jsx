@@ -52,8 +52,7 @@ const CourseItem = ({ course }) => {
     <StyledItem to={`${id}`} state={{ from: location }}>
       <CourseWrapper>
         <ImgWrapper>
-          <VideoJS options={videoJsOptions} onReady={handlePlayerReady} preview={true } />
-          {/* <img src={`${previewImageLink}/cover.webp`} alt={title} /> */}
+          <VideoJS options={videoJsOptions} onReady={handlePlayerReady} preview={true } />         
         </ImgWrapper>
         <DescWrapper>
           <CourseText>{title}</CourseText>
